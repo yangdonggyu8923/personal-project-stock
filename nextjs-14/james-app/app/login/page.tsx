@@ -1,44 +1,41 @@
 'use client';
-import axios from "axios";
-import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
-
-
+import axios from 'axios'
+import Link from "next/link";
 const SERVER = 'http://localhost:8080'
-export default function Login() {
+export default function login() {
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const handleChangePw = (e: any) => { setPassword(e.target.value) }
-    const handleChange = (e: any) => { setUsername(e.target.value) }
-    const handleSubmit = () => {
-        alert('입력한 ID = ' + username)
-        const url = `${SERVER}/login`
-        const data = { username: username, password: password } // '' 생략가능, {username, password}로 생략가능
-        const config = {
-            headers: {
-                "Cache-Control": "no-cache",
-                "Content-Type": "application/json",
-                Authorization: `Bearer blah ~`,
-                "Access-Control-Allow-Origin": "*",
-            }
-        }
-        axios.post(url, data, config)
-            .then(res => { alert('response가 가져온 ID,PW = ' + JSON.stringify(res.data)) })
-    }
+  const [username, setUsername] = useState('')
+  const [password, SetPassword] = useState('')
+
+  const handleUsername = (e:any) => {setUsername(e.target.value)}
+  const handlePassword = (e:any) => {SetPassword(e.target.value)}
+
+  
+  const handleSubmit = () => {alert("request가 가져가는 입력 ID" + username)
+  const url = `${SERVER}/api/login`
+  const data = {username , password} // <- (원본 un : un, pw : pw ) Key & value가 같으면 생략가능 
+  const config = {
+    headers:{
+      "Cache-Control": "no-cache",
+      "Content-Type": "application/json",
+       Authorization: `Bearer blah ~` ,
+      "Access-Control-Allow-Origin": "*",
+  } 
+  }
+  axios.post(url,data,config) //request 
+  .then(res=>{alert("response가 가져온 ID : " + JSON.stringify(res.data)) //respon
+  })}
 
 
-
-   
-    const handleSubmitPw = () => { alert('입력한 password = ' + password) }
-
-    return (<>
-        <h2>로그인</h2>
-        <h4>ID</h4>
-        <input type="text" onChange={handleChange} />
-        <h4>비밀번호</h4>
-        <input type="text" onChange={handleChangePw} /><br /><br />
-        {/* <button onClick={handleSubmitPw}>입력</button> */}
-        <button onClick={handleSubmit}>입력</button>
-    </>);
+  
+  return(<>
+  <h1>로그인</h1>
+  <h3>ID</h3>
+  <input type = "text" onChange={handleUsername}/>
+  <h3>Password</h3>
+  <input type = "text" onChange={handlePassword}/> <br /> <br />
+  <button onClick={handleSubmit}>전송</button>
+  </>);
 }
