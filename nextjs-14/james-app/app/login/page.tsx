@@ -15,18 +15,21 @@ export default function login() {
   
   const handleSubmit = () => {alert("request가 가져가는 입력 ID" + username)
   const url = `${SERVER}/api/login`
-  const data = {username , password} // <- (원본 un : un, pw : pw ) Key & value가 같으면 생략가능 
+  const data = {username , password} // <- (원본 un : un, pw : pw ) Key & value가 같으면 생략가능 -> username : username ~
   const config = {
     headers:{
       "Cache-Control": "no-cache",
       "Content-Type": "application/json",
        Authorization: `Bearer blah ~` ,
       "Access-Control-Allow-Origin": "*",
-  } 
+    }   
   }
-  axios.post(url,data,config) //request 
-  .then(res=>{alert("response가 가져온 ID : " + JSON.stringify(res.data)) //respon
-  })}
+  axios.post(url,data,config) // = requestbody
+  .then(res=>{                            // res.data.messenger = 자바의 "messenger", 
+    const messenger = res.data.messenger   // JSON.stringify = toString() , res.data = responsebody
+    alert((messenger))
+  })
+}
 
 
   

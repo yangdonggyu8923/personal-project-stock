@@ -40,7 +40,7 @@ export default function join() {
     const handleSubmit = () => {alert("request가 가져가는 입력 값" + username + password + checkPassword + 
     name + phone + job + height + weight)
     const url = `${SERVER}/api/users`
-    const data = {username, password, checkPassword, name, phone, job, height, weight}
+    const data = {username, password, checkPassword, name, phone, job, height, weight} // data = requestbody
     const config = {
       headers:{
         "Cache-Control": "no-cache",
@@ -51,7 +51,7 @@ export default function join() {
     }
     axios.post(url,data,config) 
     .then(res=>{
-      alert("response가 가져온 ID : " + JSON.stringify(res.data)) 
+      alert("response가 가져온 ID : " + JSON.stringify(res.data)) // response.responsebody = res.data = hashmap
       router.push("/login")
     })}
     
@@ -62,7 +62,7 @@ export default function join() {
         <p>Please fill in this form to create an account.</p>
         <hr/>
         <label htmlFor="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required onChange={handleChange} value={username}/><br />
+        <input type="text" placeholder="Enter Username" name="username" onChange={handleChange} value={username}required/><br />
 
         <label htmlFor="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" onChange={handleChange} value={password}required/><br />
@@ -71,7 +71,7 @@ export default function join() {
         <input type="password" placeholder="Repeat Password" name="checkPassword" onChange={handleChange} value={checkPassword}required/><br />
 
         <label htmlFor="name"><b>Name</b></label>
-        <input type="text" placeholder="Enter Password" name="name" onChange={handleChange} value={name}required/><br />
+        <input type="text" placeholder="Enter Name" name="name" onChange={handleChange} value={name}required/><br />
 
         <label htmlFor="phone"><b>Phone Number</b></label>
         <input type="text" placeholder="Enter Phone Number" name="phone" onChange={handleChange} value={phone}required/><br />
@@ -95,7 +95,6 @@ export default function join() {
           <button type="button" className="cancelbtn" >Cancel</button>
           <button type="submit" className="signupbtn" onClick={handleSubmit}>Sign Up</button>
         </div>
-        <div><b>값:</b>{inputs.username}({inputs.password})</div>
       </div>
       </>);
     }
