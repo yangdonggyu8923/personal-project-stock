@@ -22,8 +22,7 @@ export default function join() {
   const { username, password, checkPassword, name, phone, job, height, weight } = inputs;
   const handleChange = (e: any) => {
     const { value, name } = e.target;
-    setInputs(
-      {
+    setInputs({
         ...inputs,
         [name]: value
       })
@@ -31,9 +30,8 @@ export default function join() {
 
   const router = useRouter();
 
-  const handleSubmit = () => {
-    alert("request가 가져가는 입력 값" + username + password + checkPassword +
-      name + phone + job + height + weight)
+  const handleSubmit = (e:any) => {
+    e.preventDefault()
     const url = `${SERVER}/api/users`
     const data = { username, password, checkPassword, name, phone, job, height, weight } // data = requestbody
     const config = {

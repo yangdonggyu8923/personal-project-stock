@@ -28,12 +28,14 @@ export default function Home() {  // Home() = 컴포넌트 = 펑션
 
   
   
-  return(<> 
+  return(
+  <div className="flex flex-col items-center">
   <div>Welcome to React !!</div>
   <h3>이름을 입력하세요</h3>
   <input type="text" onChange={handleChange}/>
   <button onClick={handleClick}>입력</button><br /><br />
   <Link href={"/login"} >로그인</Link><br />
-  <Link href={"/join"}>회원가입</Link>
-  </>); // return ( ) = 컨텐트
+  <Link href={"/join"}>회원가입</Link><br />
+  <Link href={"/mui-demo"}>MUI DEMO</Link>
+  </div>); // return ( ) = 컨텐트
 }
