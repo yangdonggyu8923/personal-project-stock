@@ -3,8 +3,9 @@ import { useRouter } from "next/navigation"
 import { useState } from "react";
 import axios from 'axios'
 import React from 'react';
-const SERVER = 'http://localhost:8080'
-
+import { API } from "@/app/atoms/enums/API";
+import AxiosConfig from "@/app/organisms/configs/axios-config";
+import { PG } from "@/app/atoms/enums/PG";
 
 export default function join() {
 
@@ -32,20 +33,13 @@ export default function join() {
 
   const handleSubmit = (e:any) => {
     e.preventDefault()
-    const url = `${SERVER}/api/users`
+    const url = `${API.SERVER}/api/users`
     const data = { username, password, checkPassword, name, phone, job, height, weight } // data = requestbody
-    const config = {
-      headers: {
-        "Cache-Control": "no-cache",
-        "Content-Type": "application/json",
-        Authorization: `Bearer blah ~`,
-        "Access-Control-Allow-Origin": "*",
-      }
-    }
+    const config = AxiosConfig()
     axios.post(url, data, config)
       .then(res => {
         alert("response가 가져온 ID : " + JSON.stringify(res.data)) // response.responsebody = res.data = hashmap
-        router.push("/login")
+        router.push(`${PG.USER}/login`)
       })
   }
 

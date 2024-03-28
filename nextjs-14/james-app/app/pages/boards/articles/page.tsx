@@ -3,10 +3,14 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import { Box, Button, Input } from '@mui/material';
+import { API } from "@/app/atoms/enums/API";
+import AxiosConfig from "@/app/organisms/configs/axios-config";
+import ArticlesRows from "@/app/organisms/rows/articles-rows";
+import ArticlesColumns from "@/app/organisms/columns/articles-columns";
 
-const SERVER = 'http://localhost:8080'
 
-interface IArticle {     // 엔티티. 최우선으로 작성
+interface IArticle {
     id: number,
     title: string,
     content: string,
@@ -15,19 +19,12 @@ interface IArticle {     // 엔티티. 최우선으로 작성
 }
 
 
-export default function Articles() {   // 자바의 자료구조 ArrayList<>()
+export default function Articles() {
     const router = useRouter();
     const [articles, setArticles] = useState([]);
 
-    const url = `${SERVER}/api/articles`
-    const config = {
-        headers: {
-            "Cache-Control": "no-cache",
-            "Content-Type": "application/json",
-            Authorization: `Bearer blah ~`,
-            "Access-Control-Allow-Origin": "*",
-        }
-    }
+    const url = `${API.SERVER}/api/articles`
+    const config = AxiosConfig();
     useEffect(() => {
         {
             axios.get(url, config).then(res => {
@@ -52,25 +49,26 @@ export default function Articles() {   // 자바의 자료구조 ArrayList<>()
         }
     }, [])
 
-    return ( // 스키마 부분
-        <table>
-            <thead>
-                <tr>
-                    <th>제목</th>
-                    <th>내용</th>
-                    <th>작성자</th>
-                    <th>등록일</th>
-                </tr>
-            </thead>
-            <tbody>
-                {articles.map((props: IArticle) =>
-                (<tr key={props.id}>
-                    <td>{props.title}</td>
-                    <td>{props.content}</td>
-                    <td>{props.writer}</td>
-                    <td>{props.registerDate}</td>
-                </tr>))}
-            </tbody>
-        </table>
+    return (
+        <>
+        <h1>게시글 목록</h1>
+            
+            {/* <Box sx={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={ArticlesRows()}
+        columns={ArticlesColumns}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
+            },
+          },
+        }}
+        pageSizeOptions={[5]}
+        checkboxSelection
+        disableRowSelectionOnClick
+      />
+    </Box> */}
+    </>
     );
 }
