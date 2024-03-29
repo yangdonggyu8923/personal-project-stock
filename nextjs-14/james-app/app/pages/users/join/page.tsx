@@ -3,11 +3,12 @@ import { useRouter } from "next/navigation"
 import { useState } from "react";
 import axios from 'axios'
 import React from 'react';
-import { API } from "@/app/atoms/enums/API";
-import AxiosConfig from "@/app/organisms/configs/axios-config";
-import { PG } from "@/app/atoms/enums/PG";
+import { API } from "@/redux/common/enums/API";
+import AxiosConfig from "@/redux/common/configs/axios-config";
+import { PG } from "@/redux/common/enums/PG";
+import { NextPage } from "next";
 
-export default function join() {
+const JoinPage: NextPage = () =>  {
 
   const [inputs, setInputs] = useState({
     username: "",
@@ -33,7 +34,7 @@ export default function join() {
 
   const handleSubmit = (e:any) => {
     e.preventDefault()
-    const url = `${API.SERVER}/api/users`
+    const url = `${API.SERVER}/users`
     const data = { username, password, checkPassword, name, phone, job, height, weight } // data = requestbody
     const config = AxiosConfig()
     axios.post(url, data, config)
@@ -86,3 +87,7 @@ export default function join() {
     </div>
   </>);
 }
+
+
+
+export default JoinPage;

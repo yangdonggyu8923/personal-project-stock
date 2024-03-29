@@ -3,9 +3,9 @@ import { useState } from "react";
 import axios from 'axios'
 import Link from "next/link";
 import { Box, Button, Input } from '@mui/material';
-import { PG } from "./atoms/enums/PG";
-import { API } from "./atoms/enums/API";
-import AxiosConfig from "./organisms/configs/axios-config";
+import { PG } from "../redux/common/enums/PG";
+import { API } from "../redux/common/enums/API";
+import AxiosConfig from "../redux/common/configs/axios-config";
 
 export default function Home() {  // Home() = 컴포넌트 = 펑션
 
@@ -34,7 +34,7 @@ export default function Home() {  // Home() = 컴포넌트 = 펑션
   <Link href={`${PG.USER}/join`}>회원가입</Link><br />
   <Link href={`${PG.DEMO}/mui-demo`}>MUI DEMO</Link>
   <Link href={`${PG.DEMO}/companies`}>COMPANIES</Link>
-  <Link href={`${PG.DEMO}/counter`}>카운터 데모</Link>
-  <Link href={`${PG.DEMO}/counter/container`}>리덕스 데모</Link>
+  <Link href={`${PG.DEMO}/counter`}>카운터</Link>
+  <Link href={`${PG.DEMO}/redux-counter`}>리덕스 카운터</Link>
   </div>);
 }

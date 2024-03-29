@@ -2,11 +2,11 @@
 import { useRouter } from "next/navigation"
 import { useState } from "react";
 import axios from 'axios'
-import { API } from "@/app/atoms/enums/API";
-import AxiosConfig from "@/app/organisms/configs/axios-config";
-import { PG } from "@/app/atoms/enums/PG";
+import { API } from "@/redux/common/enums/API";
+import AxiosConfig from "@/redux/common/configs/axios-config";
+import { PG } from "@/redux/common/enums/PG";
 
-export default function login() {
+const LoginPage = () => {
 
   const [username, setUsername] = useState('')
   const [password, SetPassword] = useState('')
@@ -18,7 +18,7 @@ export default function login() {
 
   const handleSubmit = () => {
     alert("request가 가져가는 입력 ID" + username)
-    const url = `${API.SERVER}/api/login`
+    const url = `${API.SERVER}/login`
     const data = { username, password } // <- (원본 un : un, pw : pw ) Key & value가 같으면 생략가능 -> username : username ~
     const config = AxiosConfig()
 
@@ -52,3 +52,4 @@ export default function login() {
     <button onClick={handleSubmit}>전송</button>
   </>);
 }
+export default LoginPage;

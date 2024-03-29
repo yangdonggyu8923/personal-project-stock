@@ -1,7 +1,7 @@
-interface IArticles {
+export interface IArticles {
     id: number,
     title: string,
     content: string,
-    writer: string,
+    writer: number,
     registerDate: string
 }
