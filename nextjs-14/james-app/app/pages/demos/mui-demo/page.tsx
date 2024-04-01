@@ -2,8 +2,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
-import MuiDemoColumns from '@/app/organisms/columns/mui-demo-columns';
-import MuiDemoRows from '@/app/organisms/rows/mui-demo-rows';
+import MuiDemoColumns from '@/app/component/columns/mui-demo-columns';
+import MuiDemoRows from '@/app/component/rows/mui-demo-rows';
 
 
 export default function DataGridDemo() {

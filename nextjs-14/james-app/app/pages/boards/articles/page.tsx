@@ -2,7 +2,8 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from 'react-redux';
 import { NextPage } from "next";
-import { getAllArticles } from "@/redux/features/articles/article.service";
+import { fetchAllArticles } from "@/redux/features/articles/article.service";
+import { getAllArticles } from "@/redux/features/articles/article.slice";
 // import React from "react";
 
 interface IArticle {
@@ -13,16 +14,28 @@ interface IArticle {
     registerDate: string
 }
 
-const ArtilcesPage: NextPage = () => {
-    const dispatch = useDispatch()
-    const [articles, setArticles] = useState([])
+const ArticlesPage: NextPage = () => {
+    const dispatch = useDispatch()  // 레퍼런스 있음 = 의존관계
+    // const [articles, setArticles] = useState([]) -> 상태가 리액트에 없고 리덕스에 있다 = 무상태 프로그래밍
+    const allArticles: [] = useSelector(getAllArticles)  // 레퍼런스 있음 = 의존관계
 
-    useEffect(() => {
-        dispatch(getAllArticles())
-    }, [])
+    if(allArticles !== undefined){
+        console.log('allArticles is not undefined')
+
+        console.log('length is ' + allArticles.length)
+        for(let i=0; i<allArticles.length; i++){
+            console.log(JSON.stringify(allArticles[i]))
+        }
+    }else{
+        console.log('allArticles is undefined')
+    }
+
+
+    useEffect(() => {   // 레퍼런스 없음 = 의존관계 아님, 
+        dispatch(fetchAllArticles(1))    // 실행 순서: useEffect -> dispatch -> fetchAllArticles
+    }, [])  // [dispatch]의 상태가 바뀌면 useEffect를 다시 실행한다 (나중에 다시 설명)
     
     return (<>
-        <h2>개인페이지 Article</h2>
         <table border={1}>
             <thead>
                 <tr>
@@ -33,7 +46,7 @@ const ArtilcesPage: NextPage = () => {
                 </tr>
             </thead>
             <tbody>
-                {articles.map((props: IArticle) => (
+                {allArticles?.map((props: IArticle) => (
                     <tr key={props.id}>
                         <td>{props.title}</td>
                         <td>{props.content}</td>
@@ -46,4 +59,4 @@ const ArtilcesPage: NextPage = () => {
     </>)
 }
 
-export default ArtilcesPage
+export default ArticlesPage

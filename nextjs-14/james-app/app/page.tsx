@@ -35,6 +35,8 @@ export default function Home() {  // Home() = 컴포넌트 = 펑션
   <Link href={`${PG.DEMO}/mui-demo`}>MUI DEMO</Link>
   <Link href={`${PG.DEMO}/companies`}>COMPANIES</Link>
   <Link href={`${PG.DEMO}/counter`}>카운터</Link>
-  <Link href={`${PG.DEMO}/redux-counter`}>리덕스 카운터</Link>
+  <Link href={`${PG.DEMO}/redux-counter`}>리덕스 카운터</Link><br />
+  <Link href={`${PG.USER}/users`}>유저</Link><br />
+  <Link href={`${PG.BOARD}/articles`}>게시글 목록</Link>
   </div>);
 }

@@ -1,13 +1,11 @@
-//"use client"; //this is a client side component
-
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./counter.init";
 
 export const counterSlice = createSlice({
-  name: "counter",
-  initialState,
-  reducers: {
+  name: "counter",  // 슬라이스의 키값은 리듀서의 키값인 count이다. 이름이 counter
+  initialState, // 속성
+  reducers: {   // 기능
     handleClickPlus: (state) => {
       state.value += 1;
     },
@@ -18,7 +16,7 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { handleClickPlus, handleClickMinus } = counterSlice.actions
+export const { handleClickPlus, handleClickMinus } = counterSlice.actions 
 
 export const getCount = (state: any) => state.count.value;
 
