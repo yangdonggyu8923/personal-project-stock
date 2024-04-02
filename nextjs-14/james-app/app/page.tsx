@@ -26,7 +26,7 @@ export default function Home() {  // Home() = 컴포넌트 = 펑션
   
   return(
   <div className="flex flex-col items-center">
-  <div>Welcome to React !!</div>
+  {/* <div>Welcome to React !!</div>
   <h3>이름을 입력하세요</h3>
   <Input type="text" onChange={handleChange}/>
   <Button onClick={handleClick}>입력</Button><br />
@@ -37,6 +37,6 @@ export default function Home() {  // Home() = 컴포넌트 = 펑션
   <Link href={`${PG.DEMO}/counter`}>카운터</Link>
   <Link href={`${PG.DEMO}/redux-counter`}>리덕스 카운터</Link><br />
   <Link href={`${PG.USER}/users`}>유저</Link><br />
-  <Link href={`${PG.BOARD}/articles`}>게시글 목록</Link>
+  <Link href={`${PG.BOARD}/articles`}>게시글 목록</Link> */}
   </div>);
 }

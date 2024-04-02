@@ -4,7 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NextPage } from "next";
 import { fetchAllArticles } from "@/redux/features/articles/article.service";
 import { getAllArticles } from "@/redux/features/articles/article.slice";
-// import React from "react";
+import Columns from "@/app/component/articles/columns";
+import { Box } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 
 interface IArticle {
     id: number,
@@ -14,7 +16,7 @@ interface IArticle {
     registerDate: string
 }
 
-const ArticlesPage: NextPage = () => {
+const ArticlesPage: NextPage = ({data}:any) => {
     const dispatch = useDispatch()  // 레퍼런스 있음 = 의존관계
     // const [articles, setArticles] = useState([]) -> 상태가 리액트에 없고 리덕스에 있다 = 무상태 프로그래밍
     const allArticles: [] = useSelector(getAllArticles)  // 레퍼런스 있음 = 의존관계
@@ -36,26 +38,23 @@ const ArticlesPage: NextPage = () => {
     }, [])  // [dispatch]의 상태가 바뀌면 useEffect를 다시 실행한다 (나중에 다시 설명)
     
     return (<>
-        <table border={1}>
-            <thead>
-                <tr>
-                    <th>title</th>
-                    <th>content</th>
-                    <th>writer</th>
-                    <th>registerDate</th>
-                </tr>
-            </thead>
-            <tbody>
-                {allArticles?.map((props: IArticle) => (
-                    <tr key={props.id}>
-                        <td>{props.title}</td>
-                        <td>{props.content}</td>
-                        <td>{props.writer}</td>
-                        <td>{props.registerDate}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+    <h2>게시글 목록</h2>
+        <Box sx={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={data}
+        columns={Columns()}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
+            },
+          },
+        }}
+        pageSizeOptions={[5]}
+        checkboxSelection
+        disableRowSelectionOnClick
+      />
+    </Box>
     </>)
 }
 

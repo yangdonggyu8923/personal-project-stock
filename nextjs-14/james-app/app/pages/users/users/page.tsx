@@ -27,6 +27,7 @@ const UsersPage: NextPage = () => {
     },[])
 
     return(<>
+    <h1>사용자 목록</h1>
     <table border={1}>
         <thead>
             <tr>
