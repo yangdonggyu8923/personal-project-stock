@@ -31,7 +31,10 @@ function ResponsiveAppBar() {
   };
 
   const handleCloseNavMenu = (event: any) => {event.target.value
-    // alert('클릭한 메뉴 : '+)
+    const lis = []
+    for(let i=0; i<links.length; i++){
+      let t = 3
+    }
   };
 
   const handleCloseUserMenu = () => {
