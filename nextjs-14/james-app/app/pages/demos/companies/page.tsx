@@ -1,6 +1,6 @@
 'use client';
-import CompaniesColumns from "@/app/component/columns/companies-columns";
-import CompaniesRows from "@/app/component/rows/companies-rows";
+import CompaniesColumns from "@/app/component/demos/companies-columns";
+import CompaniesRows from "@/app/component/boards/companies-rows";
 const SERVER = 'http://localhost:8080'
 
 export default function articles() {

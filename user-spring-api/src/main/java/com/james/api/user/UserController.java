@@ -40,13 +40,10 @@ public class UserController {
 
     @SuppressWarnings("unchecked")
     @GetMapping("/api/all-users")
-    public Map<String, ?> findAll(){
-        Map<String, Object> map = new HashMap<>();
-//        map.put("message", Messenger.SUCCESS);
+    public List<User> findAll(){
         List<User> list = new ArrayList<>();
-        list = repository.findAll();
 
-        return map;
+        return repository.findAll();
     }
 
 

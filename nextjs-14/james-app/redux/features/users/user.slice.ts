@@ -33,8 +33,8 @@ export const userSlice = createSlice({
 
 export const getAllUsers = (state:any) => {
     console.log('-- Before useSelector --')
-    console.log(JSON.stringify(state.user.array.result))
-    return state.user.array.result;
+    console.log(JSON.stringify(state.user.array))
+    return state.user.array;
 }
 
 export const { } = userSlice.actions

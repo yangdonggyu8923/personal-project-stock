@@ -14,10 +14,11 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { PG } from '@/redux/common/enums/PG';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const pages = ['회원가입', '로그인', '카운터', '게시글 목록', '사용자 목록'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const links = [`${PG.USER}/join`, `${PG.USER}/login`, `${PG.DEMO}/redux-counter`, `${PG.BOARD}/articles`, `${PG.USER}/users`]
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -29,13 +30,26 @@ function ResponsiveAppBar() {
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
-
-  const handleCloseNavMenu = (event: any) => {event.target.value
-    const lis = []
-    for(let i=0; i<links.length; i++){
-      let t = 3
-    }
-  };
+  const router = useRouter();
+  const handleCloseNavMenu = (event: any) => {
+     switch(event.target.innerText){
+      case '회원가입':
+        router.push(`${PG.USER}/join`)
+        break;
+      case '로그인':
+        router.push(`${PG.USER}/login`)
+        break;
+      case '카운터':
+        router.push(`${PG.DEMO}/redux-counter`)
+        break;
+      case '게시글 목록':
+        router.push(`${PG.BOARD}/articles`)
+        break;
+      case '사용자 목록':
+        router.push(`${PG.USER}/list`)
+        break;
+      }
+    };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -45,12 +59,12 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="http://localhost:3000"
+            href="http://localhost:3000/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -64,7 +78,7 @@ function ResponsiveAppBar() {
             HOME
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -95,17 +109,17 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="http://localhost:3000"
+            href="http://localhost:3000/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -120,54 +134,15 @@ function ResponsiveAppBar() {
             HOME
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
               <Button
-                key={'회원가입'}
-                href={`${PG.USER}/join`}
+                key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {'회원가입'}
+                {page}
               </Button>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button
-                key={'로그인'}
-                href={`${PG.USER}/login`}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {'로그인'}
-              </Button>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button
-                key={'카운터'}
-                href={`${PG.DEMO}/redux-counter`}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {'카운터'}
-              </Button>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button
-                key={'사용자 목록'}
-                href={`${PG.USER}/users`}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {'사용자 목록'}
-              </Button>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button
-                key={'게시글 목록'}
-                href={`${PG.BOARD}/articles`}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}  
-              >
-                {'게시글 목록'}
-              </Button>
+            ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

@@ -1,13 +1,17 @@
 'use client'
+import UserColumns from "@/app/component/users/column"
 import { IUsers } from "@/redux/features/users/user.model"
 import { fetchAllUsers } from "@/redux/features/users/user.service"
 import { getAllUsers } from "@/redux/features/users/user.slice"
+import { DataGrid } from "@mui/x-data-grid"
 import { NextPage } from "next"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 
 const UsersPage: NextPage = () => {
+    const [pageSize, setPageSize] = useState(5); // 4-1
+
     const dispatch = useDispatch()
     const allUsers: [] = useSelector(getAllUsers)
 
@@ -27,33 +31,14 @@ const UsersPage: NextPage = () => {
     },[])
 
     return(<>
-    <h1>사용자 목록</h1>
-    <table border={1}>
-        <thead>
-            <tr>
-                <th>아이디</th>
-                <th>이름</th>
-                <th>전화번호</th>
-                <th>직업</th>
-                <th>키</th>
-                <th>체중</th>
-            </tr>
-        </thead>
-        <tbody>
-            {allUsers?.map((props:IUsers)=>(
-                <tr key={props.id}>
-                    <td>{props.username}</td>
-                    <td>{props.name}</td>
-                    <td>{props.phone}</td>
-                    <td>{props.job}</td>
-                    <td>{props.height}</td>
-                    <td>{props.weight}</td>
-                </tr>
-            ))}
-        </tbody>
-        </table>  
-    
-    </>)
+    <div style={{ height: 400, width: "100%" }}>
+      <DataGrid // 🔥 4
+        rows={allUsers}
+        columns={UserColumns()}
+        pageSizeOptions={[5, 10, 20]} // 4-1
+        checkboxSelection
+      />
+    </div></>)
 }
 
 export default UsersPage

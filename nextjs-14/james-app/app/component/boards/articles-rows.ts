@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
-import { API } from "@/store/common/enums/API";
-import AxiosConfig from "@/store/common/configs/axios-config";
+import { API } from "@/redux/common/enums/API";
+import AxiosConfig from "@/redux/common/configs/axios-config";
 
 export default function ArticlesRows(){
     const [articles, setArticles] = useState([]);

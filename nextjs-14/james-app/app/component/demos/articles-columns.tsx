@@ -1,3 +1,4 @@
+import { IArticles } from "@/redux/features/articles/articles.model";
 import { GridColDef } from "@mui/x-data-grid";
 
 export default function ArticlesColumns(props: IArticles) : GridColDef[] {
@@ -20,12 +21,6 @@ export default function ArticlesColumns(props: IArticles) : GridColDef[] {
                 field: props.content,
                 headerName: ' 내용',
                 width: 150,
-                editable: true,
-            },
-            {
-                field: props.writer,
-                headerName: '작성자',
-                width: 110,
                 editable: true,
             },
             {

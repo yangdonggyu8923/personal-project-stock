@@ -9,8 +9,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService{
+
+    private static ArticleRepository repo;
+
     @Override
-    public MessengerVo save(Object o) {
+    public MessengerVo save(ArticleDto t) {
         return null;
     }
 
@@ -20,7 +23,7 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public String delete(Object o) {
+    public String delete(ArticleDto t) {
         return null;
     }
 
@@ -30,7 +33,8 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public Optional findById(Long id) {
+    public Optional<ArticleDto> findById(Long id) {
+        Optional<Article> ent = repo.findById(id);
         return Optional.empty();
     }
 

@@ -22,7 +22,7 @@ public class BoardDto {
     private String boardName;
     private String boardType;
 
-    @Builder.Default    // = List를 디폴트 타입으로 준다.
-    private List<Article> article = new ArrayList<>();
+//    @Builder.Default    // = List를 디폴트 타입으로 준다.
+    private List<Article> article; // = new ArrayList<>()
 
 }

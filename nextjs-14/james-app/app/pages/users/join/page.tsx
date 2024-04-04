@@ -53,9 +53,6 @@ const JoinPage: NextPage = () =>  {
       <label htmlFor="password"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="password" onChange={handleChange} value={password} required /><br />
 
-      <label htmlFor="checkPassword"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="checkPassword" onChange={handleChange} value={password} required /><br />
-
       <label htmlFor="name"><b>Name</b></label>
       <input type="text" placeholder="Enter Name" name="name" onChange={handleChange} value={name} required /><br />
 
