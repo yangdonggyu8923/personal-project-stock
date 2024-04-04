@@ -1,4 +1,4 @@
-package com.james.api.proxy;
+package com.james.api.common.proxy;
 
 public class ProxyTest {
 

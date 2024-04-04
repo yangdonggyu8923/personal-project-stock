@@ -1,17 +1,38 @@
 package com.james.api.user;
 
-import com.james.api.enums.Messenger;
+import com.james.api.common.component.MessengerVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
     @Override
-    public String addUsers() {
+    public MessengerVo save(Object o) {
         return null;
+    }
+
+    @Override
+    public String insertMany() {
+        return null;
+    }
+
+    @Override
+    public String delete(Object o) {
+        return null;
+    }
+
+    @Override
+    public List findAll() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public Optional findById(Long id) {
+        return Optional.empty();
     }
 
     @Override
@@ -20,12 +41,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Map<String, ?> getUserMap() {
-        return null;
+    public Optional getOne(String id) {
+        return Optional.empty();
     }
 
     @Override
-    public String login(User user) {
+    public Boolean existsById(Long id) {
         return null;
     }
 
@@ -41,36 +62,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<?> findUsersByJob(String job) {
-        return null;
-    }
-
-    @Override
-    public Map<String, ?> findUsersByJobFromMap(String job) {
-        return null;
-    }
-
-    @Override
-    public Map<String, ?> findUsersByNameFromMap(String name) {
-        return null;
-    }
-
-    @Override
-    public List<?> findUsers() throws SQLException {
-        return null;
-    }
-
-    @Override
-    public Messenger createTable() throws SQLException {
-        return null;
-    }
-
-    @Override
-    public Messenger deleteTable() throws SQLException {
-        return null;
-    }
-
-    @Override
-    public Messenger insertData(User user) throws SQLException {
         return null;
     }
 }

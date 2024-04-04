@@ -1,7 +1,5 @@
 package com.james.api.article;
-import com.james.api.user.User;
-import com.james.api.common.AbstractService;
-import com.james.api.enums.Messenger;
+import com.james.api.common.component.MessengerVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,23 +8,29 @@ import java.util.List;
 import java.util.Optional;
 @Service
 @RequiredArgsConstructor
-public class ArticleServiceImpl extends AbstractService{
-
-    private final ArticleRepository repository;
-
+public class ArticleServiceImpl implements ArticleService{
     @Override
-    public Messenger save(Object o) {
+    public MessengerVo save(Object o) {
         return null;
     }
 
     @Override
-    public List findAll() throws SQLException{
-        return repository.findAll();
+    public String insertMany() {
+        return null;
     }
 
+    @Override
+    public String delete(Object o) {
+        return null;
+    }
 
     @Override
-    public Optional<Article> findById(long id) {
+    public List findAll() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public Optional findById(Long id) {
         return Optional.empty();
     }
 
@@ -36,28 +40,12 @@ public class ArticleServiceImpl extends AbstractService{
     }
 
     @Override
-    public Optional<Article> getOne(String id) {
+    public Optional getOne(String id) {
         return Optional.empty();
     }
 
     @Override
-    public String delete(Object o) {
-        return null;
-    }
-
-
-    @Override
-    public String deleteAll() {
-        return null;
-    }
-
-    @Override
-    public Boolean existsById(long id) {
-        return null;
-    }
-
-    @Override
-    public Messenger insertMenuData(User user) throws SQLException {
+    public Boolean existsById(Long id) {
         return null;
     }
 }

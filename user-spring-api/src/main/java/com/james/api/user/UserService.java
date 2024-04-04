@@ -1,21 +1,14 @@
 package com.james.api.user;
-import com.james.api.enums.Messenger;
-import java.sql.SQLException;
+import com.james.api.common.command.CommandService;
+import com.james.api.common.query.QueryService;
+
 import java.util.List;
-import java.util.Map;
-public interface UserService {
-    String addUsers();
-    String count();
-    Map<String, ?> getUserMap();
-    String login(User user);
+
+public interface UserService extends CommandService, QueryService {
+    // command
     String updatePassword(User user);
+
+    // query
     List<?> findUsersByName(String name);
     List<?> findUsersByJob(String job);
-    Map<String, ?> findUsersByJobFromMap(String job);
-    Map<String, ?> findUsersByNameFromMap(String name);
-    List<?> findUsers () throws SQLException;
-    Messenger createTable() throws SQLException;;
-    Messenger deleteTable () throws SQLException;
-    Messenger insertData(User user) throws SQLException;
-
 }

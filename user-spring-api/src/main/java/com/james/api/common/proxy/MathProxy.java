@@ -1,4 +1,4 @@
-package com.james.api.proxy;
+package com.james.api.common.proxy;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;

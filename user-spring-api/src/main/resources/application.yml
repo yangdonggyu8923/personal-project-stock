@@ -1,8 +1,8 @@
 spring:
   application:
-    name: api
+    name: user
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/userdb
+    url: jdbc:mysql://localhost:3306/userdb?useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -11,16 +11,15 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
-        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
         jdbc:
           lob:
-            non_contextual_creation: true
+            '[non_contextual_creation]': true
+        '[format_sql]': true
     show-sql: true
-
 logging:
   level:
     org:
       hibernate:
-        type:
-          descriptor:
-            sql: trace
+        SQL: debug
+        type: trace
