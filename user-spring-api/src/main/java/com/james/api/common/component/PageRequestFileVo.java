@@ -1,6 +1,6 @@
 package com.james.api.common.component;
 
-import com.james.api.article.ArticleDto;
+import com.james.api.article.model.ArticleDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
