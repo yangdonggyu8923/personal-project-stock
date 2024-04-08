@@ -10,7 +10,7 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 
 const UsersPage: NextPage = () => {
-    const [pageSize, setPageSize] = useState(5); // 4-1
+    const [pageSize, setPageSize] = useState(5);
 
     const dispatch = useDispatch()
     const allUsers: [] = useSelector(getAllUsers)
@@ -32,10 +32,10 @@ const UsersPage: NextPage = () => {
 
     return(<>
     <div style={{ height: 400, width: "100%" }}>
-      <DataGrid // 🔥 4
+      <DataGrid
         rows={allUsers}
         columns={UserColumns()}
-        pageSizeOptions={[5, 10, 20]} // 4-1
+        pageSizeOptions={[5, 10, 20]}
         checkboxSelection
       />
     </div></>)

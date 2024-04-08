@@ -34,7 +34,7 @@ function ResponsiveAppBar() {
   const handleCloseNavMenu = (event: any) => {
      switch(event.target.innerText){
       case '회원가입':
-        router.push(`${PG.USER}/join`)
+        router.push(`${PG.USER}/join`) 
         break;
       case '로그인':
         router.push(`${PG.USER}/login`)

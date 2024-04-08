@@ -22,12 +22,12 @@ const handleRejected = (state:any) => {}
 
 export const userSlice = createSlice({
     name: "users",
-    initialState,
+    initialState, // name, initialState = 속성
     reducers: {},
-    extraReducers:builder =>{
+    extraReducers:builder =>{ // reducers, extraReduvers = 기능
         const {pending, rejected} = status;
 
-        builder.addCase(fetchAllUsers.fulfilled, handleFulfilled)
+        builder.addCase(fetchAllUsers.fulfilled, handleFulfilled) 
     }
 })
 
@@ -39,4 +39,4 @@ export const getAllUsers = (state:any) => {
 
 export const { } = userSlice.actions
 
-export default userSlice.reducer;
+export default userSlice.reducer; // 위는 각각의 reducers 여기선 다 합쳐져서 s가 사라진다.
