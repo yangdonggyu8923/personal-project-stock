@@ -8,6 +8,7 @@ import { API } from "./components/common/enums/API";
 import AxiosConfig from "./components/common/configs/axios-config";
 import { useRouter } from "next/navigation";
 
+
 export default function Home() {  // Home() = 컴포넌트 = 펑션
 
   const [name, setName] = useState('')
@@ -15,7 +16,7 @@ export default function Home() {  // Home() = 컴포넌트 = 펑션
   const handleChange = (e:any) =>{setName(e.target.value)} // any는 자바의 ? 와일드카드
   const handleClick = ()=>{
     alert('request가 가져가는 이름 : '+ name )
-  const url = `${API.SERVER}/name` // 자바의 "%s", sql의 '고%' 와 같다
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/name` // 자바의 "%s", sql의 '고%' 와 같다
   const data = {'name' : name} // 키에는 스트링만 가능 ''생략가능
   const config = AxiosConfig()
 

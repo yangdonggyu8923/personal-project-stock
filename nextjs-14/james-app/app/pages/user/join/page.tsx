@@ -8,6 +8,7 @@ import AxiosConfig from "@/app/components/common/configs/axios-config";
 import { PG } from "@/app/components/common/enums/PG";
 import { NextPage } from "next";
 
+
 const JoinPage: NextPage = () =>  {
 
   const [inputs, setInputs] = useState({
@@ -31,7 +32,7 @@ const JoinPage: NextPage = () =>  {
 
   const handleSubmit = (e:any) => {
     e.preventDefault()
-    const url = `${API.SERVER}/users/join`
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/users/save`
     const data = { username, password, name, phone, job} // data = requestbody
     const config = AxiosConfig()
     axios.post(url, data, config)

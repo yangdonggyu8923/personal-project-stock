@@ -1,11 +1,11 @@
 package com.james.api.common.service;
 
-import com.james.api.common.component.MessengerVo;
+import com.james.api.common.component.Messenger;
 
 public interface CommandService<T> {
 
-    T save (T t);
-    String insertMany();
-    void deleteById(Long id);
+    Messenger save(T t);
+    Messenger deleteById(Long id);
+    Messenger modify(T t);
 
 }

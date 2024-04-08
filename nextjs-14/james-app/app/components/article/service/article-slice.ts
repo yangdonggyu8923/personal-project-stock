@@ -37,8 +37,8 @@ export const articleSlice = createSlice({   // 슬라이스의 이름 = articles
 
 export const getAllArticles = (state: any) => {
     console.log('---------------- Before useSelector ----------------')
-    console.log(JSON.stringify(state.article.array.result))
-    return state.article.array.result;  // 이 코드의 article은 리듀서에서 온다 = 리듀서에서 꺼내서 주는 것
+    console.log(JSON.stringify(state.article.array))
+    return state.article.array;  // 이 코드의 article은 리듀서에서 온다 = 리듀서에서 꺼내서 주는 것
 }
 
 export const {} = articleSlice.actions

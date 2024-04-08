@@ -1,13 +1,14 @@
 package com.james.api.user.service;
 
-import com.james.api.common.component.MessengerVo;
+import com.james.api.common.component.Messenger;
 import com.james.api.common.component.PageRequestVo;
 import com.james.api.user.model.User;
 import com.james.api.user.model.UserDto;
 import com.james.api.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.sql.SQLException;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,24 +19,26 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDto save(UserDto t) {
-        return entityToDto(repository.save(dtoToEntity(t)));
+    public Messenger save(UserDto t) {
+        entityToDto(repository.save(dtoToEntity(t)));
+        return new Messenger();
     }
 
     @Override
-    public String insertMany() {
-        return null;
-    }
-
-    @Override
-    public void deleteById(Long id) {
+    public Messenger deleteById(Long id) {
         repository.deleteById(id);
+        return new Messenger();
     }
 
     @Override
-    public List<UserDto> findAll(PageRequestVo vo) {
-//        return repository.findAll(vo);
+    public Messenger modify(UserDto user) {
         return null;
+    }
+
+    @Override
+    public List<UserDto> findAll() {
+        repository.findAll();
+        return new ArrayList<>();
     }
 
     @Override
@@ -55,17 +58,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String updatePassword(User user) {
-        return null;
-    }
-
-    @Override
     public List<?> findUsersByName(String name) {
         return null;
     }
 
     @Override
     public List<?> findUsersByJob(String job) {
+        return null;
+    }
+
+    @Override
+    public Optional<User> findUserByUsername(String username) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Messenger login(UserDto param) {
         return null;
     }
 }

@@ -1,6 +1,6 @@
 package com.james.api.user;
 
-import com.james.api.common.component.MessengerVo;
+import com.james.api.common.component.Messenger;
 import com.james.api.common.component.PageRequestVo;
 import com.james.api.user.model.UserDto;
 import com.james.api.user.service.UserServiceImpl;
@@ -27,66 +27,62 @@ public class UserController {
 
     // --------------- Command ----------------
 
-    @PostMapping(path = "/join")
-    public ResponseEntity<MessengerVo> save(@RequestBody UserDto dto) {
-        log.info("입력받은 User 정보 : {}" + dto);
-        service.save(dto);
-//        User newUser = repository.save(User.builder()
-//                .username((String) paramMap.get("username"))
-//                .password((String) paramMap.get("password"))
-//                .name((String) paramMap.get("name"))
-//                .phone((String) paramMap.get("phone"))
-//                .job((String) paramMap.get("job"))
-//                .build());
-        return ResponseEntity.ok(MessengerVo.builder()
-                .message("SUCCESS")
-                .code("200")
-                .build());
+    @PostMapping(path = "/save")
+    public ResponseEntity<Messenger> save(@RequestBody UserDto param) {
+        log.info("입력받은 User 정보 : { }" + param);
+        return ResponseEntity.ok(service.save(param));
     }
 
     // --------------- Query ----------------
 
     @PostMapping("/login")
-    public ResponseEntity<MessengerVo> login(@RequestBody Map<String, UserDto> paraMap) { // requestbody = 프론트의 data
-        Map<String, MessengerVo> response = new HashMap<>();
-
-        String username = String.valueOf(paraMap.get("username"));
-
-        return ResponseEntity.ok(new MessengerVo());
+    public ResponseEntity<Messenger> login(@RequestBody UserDto param) {
+        log.info("입력받은 User 정보 : { }" + param);
+        return ResponseEntity.ok(service.login(param));
     }
 
 
-
-    @GetMapping("/all-users")
+    @GetMapping("/list")
     public ResponseEntity<List<UserDto>> findAll(Pageable pageable) {
         List<UserDto> ls = new ArrayList<>();
-        service.findAll(null);
+        service.findAll();
         return ResponseEntity.ok(new ArrayList<UserDto>());
     }
-
-
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Optional<UserDto>> findById(@PathVariable Long id) {
-        Map<String, String> response = new HashMap<>();
-        service.findById(0L);
-        return ResponseEntity.ok(Optional.of(new UserDto()));
+    @GetMapping("/detail")
+    public ResponseEntity<Optional<UserDto>> findById(@RequestParam Long id) {
+        log.info("입력받은 User 정보 : { }" + id);
+        return ResponseEntity.ok(service.findById(id));
     }
-
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<MessengerVo> deleteById(PageRequestVo vo){
-        service.deleteById(0L);
-        return ResponseEntity.ok(new MessengerVo());
+    @DeleteMapping("/delete")
+    public ResponseEntity<Messenger> deleteById(@RequestParam Long id){
+        log.info("입력받은 User 정보 : { }" + id);
+        return ResponseEntity.ok(service.deleteById(id));
     }
     @GetMapping("/count")
-    public ResponseEntity<MessengerVo> count(PageRequestVo vo){
-        service.count();
-        return ResponseEntity.ok(new MessengerVo());
+    public ResponseEntity<Long> count(PageRequestVo vo){
+        return ResponseEntity.ok(service.count());
     }
-    @GetMapping("/exists/{id}")
-    public ResponseEntity<MessengerVo> existsById(PageRequestVo vo){
-        service.existsById(0L);
-        return ResponseEntity.ok(new MessengerVo());
+
+    @PutMapping("/modify")
+    public ResponseEntity<Messenger> modify(@RequestBody UserDto param) {
+        log.info("입력받은 User 정보 : { }" + param);
+        return ResponseEntity.ok(service.modify(param));
     }
+    @PostMapping("/search")
+    public ResponseEntity<List<UserDto>> findUsersByName(@RequestParam UserDto param) {
+        log.info("입력받은 User 정보 : { }" + param);
+        return ResponseEntity.ok((List<UserDto>) service.findUsersByName(param.getName()));
+    }
+//    @GetMapping("/findUsersByJob")
+//    public ResponseEntity<Messenger> findUsersByJob(PageRequestVo vo) {
+//        service.findUsersByJob(null);
+//        return ResponseEntity.ok(new Messenger());
+//    }
+
+    //    @GetMapping("/exists")
+//    public ResponseEntity<Messenger> existsById(PageRequestVo vo){
+//        service.existsById(0L);
+//        return ResponseEntity.ok(new Messenger());
+//    }
 
 }
