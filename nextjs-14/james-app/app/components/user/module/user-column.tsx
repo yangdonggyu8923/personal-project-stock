@@ -56,6 +56,22 @@ export default function UserColumns(): GridColDef[] {
             field: 'job',
             headerName: '직업',
             renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.job}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'registerDate',
+            headerName: '작성일자',
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.regDate}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'modifyDate',
+            headerName: '수정일자',
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.modDate}</Typography>
         }
     ]
 }

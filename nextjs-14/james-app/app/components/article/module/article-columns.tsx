@@ -15,8 +15,7 @@ export default function ArticleColumns(): GridColDef[] {
             field: 'id', // 스프링 필드 이름과 같게
             headerName: 'No.',
             renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.id}</Typography>
-            }
-        ,
+        },
         {
             flex: 0.04,
             minWidth: 30,
@@ -32,6 +31,22 @@ export default function ArticleColumns(): GridColDef[] {
             field: 'content',
             headerName: '내용',
             renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.content}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'writer',
+            headerName: '작성자',
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.writerId}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'board',
+            headerName: '게시판',
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.boardId}</Typography>
         },
         {
             flex: 0.04,
