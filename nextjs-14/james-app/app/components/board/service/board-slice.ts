@@ -38,8 +38,8 @@ export const boardSlice = createSlice({
 
 export const getAllBoards = (state: any) => {
     console.log('---------------- Before useSelector ----------------')
-    console.log(JSON.stringify(state.article.array))
-    return state.article.array;  
+    console.log(JSON.stringify(state.board.array))
+    return state.board.array;  
 }
 
 export const {} = boardSlice.actions

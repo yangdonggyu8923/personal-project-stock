@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
-import { UserColumn } from "../model/user-column";
+import { UserColumn } from "../model/users-column";
 
 interface CellType{
     row : UserColumn
@@ -61,7 +61,7 @@ export default function UserColumns(): GridColDef[] {
             flex: 0.04,
             minWidth: 30,
             sortable: false,
-            field: 'registerDate',
+            field: 'regrDate',
             headerName: '작성일자',
             renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.regDate}</Typography>
         },
@@ -69,7 +69,7 @@ export default function UserColumns(): GridColDef[] {
             flex: 0.04,
             minWidth: 30,
             sortable: false,
-            field: 'modifyDate',
+            field: 'modDate',
             headerName: '수정일자',
             renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.modDate}</Typography>
         }

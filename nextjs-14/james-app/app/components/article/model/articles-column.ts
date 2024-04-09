@@ -1,9 +1,9 @@
 export interface ArticleColumn{
-    id?: string;
+    id?: string,
     title?: string,
     content?: string,
     writerId?: number,
     boardId?: number,
-    regDate?: string;
-    modDate?: string;
+    regDate?: string,
+    modDate?: string
 }

@@ -5,12 +5,14 @@ import com.james.api.common.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
 @Entity(name = "users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Builder
 @AllArgsConstructor
 @ToString(exclude = {"id"})
 public class User extends BaseEntity {
@@ -28,19 +30,5 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "writer")
     private List<Article> article;
 
-    @Builder(builderMethodName = "builder")
-    public User(Long id, String username, String password,
-                String name, String phone, String job) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.phone = phone;
-        this.job = job;
 
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

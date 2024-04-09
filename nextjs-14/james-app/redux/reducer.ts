@@ -4,6 +4,7 @@ import countReducer from "@/app/components/counter/service/counter-slice";
 import articleReducer from "@/app/components/article/service/article-slice";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import userReducer from "@/app/components/user/service/user-slice"
+import boardReducer from "@/app/components/board/service/board-slice"
 
 
 const createNoopStorage = () => {
@@ -40,14 +41,21 @@ const userPersistConfig = {
   storage,
   whitelist: ["userState"],
 };
+const boardPersistConfig = {
+  key: "board",
+  storage,
+  whitelist: ["boardState"],
+};
 
 
 const persistedCountReducer = persistReducer(countPersistConfig, countReducer);
 const persistedArticleReducer = persistReducer(articlePersistConfig, articleReducer);
 const persistedUserReducer = persistReducer(userPersistConfig, userReducer)
+const persistedBoardReducer = persistReducer(boardPersistConfig, boardReducer)
 
 export const rootReducer = combineReducers({  // combineReducers({})는 키(상태)를 합치는 것
   count: persistedCountReducer,               // count, article, user
   article: persistedArticleReducer,
-  user: persistedUserReducer
+  user: persistedUserReducer,
+  board: persistedBoardReducer
 });

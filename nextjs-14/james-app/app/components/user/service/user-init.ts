@@ -1,4 +1,4 @@
-import { IUsers } from "../model/user-model";
+import { IUsers } from "../model/users-model";
 
 export const initialState: IUsers = {
     id: 0,

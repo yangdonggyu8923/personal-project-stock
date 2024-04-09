@@ -16,7 +16,7 @@ interface IArticle {
     registerDate: string
 }
 
-const ArticlesPage: NextPage = ({data}:any) => {
+const ArticlesPage: NextPage = () => {
     const dispatch = useDispatch()  // 레퍼런스 있음 = 의존관계
     // const [articles, setArticles] = useState([]) -> 상태가 리액트에 없고 리덕스에 있다 = 무상태 프로그래밍
     const allArticles: [] = useSelector(getAllArticles)  // 레퍼런스 있음 = 의존관계
@@ -38,9 +38,9 @@ const ArticlesPage: NextPage = ({data}:any) => {
     }, [])  // [dispatch]의 상태가 바뀌면 useEffect를 다시 실행한다 (나중에 다시 설명)
     
     return (<>
-    <h2>게시글 목록</h2>
+
         <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid
+      {allArticles && <DataGrid
         rows={allArticles}
         columns={ArticleColumns()}
         initialState={{
@@ -53,7 +53,7 @@ const ArticlesPage: NextPage = ({data}:any) => {
         pageSizeOptions={[10]}
         checkboxSelection
         disableRowSelectionOnClick
-      />
+      />}
     </Box>
     </>)
 }
