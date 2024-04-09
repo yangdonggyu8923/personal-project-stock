@@ -1,18 +1,18 @@
 import { GridColDef } from "@mui/x-data-grid";
-import { ArticleColumn } from "../model/articles-column";
 import { Typography } from "@mui/material";
+import { BoardColumn } from "../model/boards-column";
 
 interface CellType{
-    row : ArticleColumn
+    row : BoardColumn
 }
 
-export default function ArticleColumns(): GridColDef[] {
+export default function BoardColumns(): GridColDef[] {
     return [
         {
             flex: 0.04,
             minWidth: 30,
             sortable: false,
-            field: 'id', // 스프링 필드 이름과 같게
+            field: 'id',
             headerName: 'No.',
             renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.id}</Typography>
             }
@@ -21,17 +21,17 @@ export default function ArticleColumns(): GridColDef[] {
             flex: 0.04,
             minWidth: 30,
             sortable: false,
-            field: 'title',
-            headerName: '제목',
-            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.title}</Typography>
+            field: 'boardName',
+            headerName: '게시판이름',
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.boardName}</Typography>
         },
         {
             flex: 0.04,
             minWidth: 30,
             sortable: false,
-            field: 'content',
-            headerName: '내용',
-            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.content}</Typography>
+            field: 'boardType',
+            headerName: '게시판종류',
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.boardType}</Typography>
         },
         {
             flex: 0.04,
