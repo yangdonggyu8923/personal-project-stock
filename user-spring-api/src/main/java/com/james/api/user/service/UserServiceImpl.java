@@ -37,8 +37,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> findAll() {
-        repository.findAll();
-        return new ArrayList<>();
+        return repository.findAll().stream().map(i->entityToDto(i)).toList();
     }
 
     @Override
@@ -74,6 +73,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Messenger login(UserDto param) {
-        return null;
+        return new Messenger();
     }
 }

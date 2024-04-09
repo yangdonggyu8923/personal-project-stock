@@ -7,5 +7,7 @@ export const initialState: IUsers = {
     name: "",
     phone: "",
     job: "",
+    regDate: "",
+    modDate: "",
     array:[]
 }

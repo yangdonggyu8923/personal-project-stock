@@ -19,6 +19,7 @@ public interface UserService extends CommandService<UserDto>, QueryService<UserD
     
     default User dtoToEntity(UserDto dto) {
         return User.builder()
+                .id(dto.getId())
                 .username(dto.getUsername())
                 .password(dto.getPassword())
                 .name(dto.getName())

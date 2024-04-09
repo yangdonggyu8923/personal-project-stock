@@ -3,18 +3,16 @@ package com.james.api.board.service;
 import com.james.api.board.model.BoardDto;
 import com.james.api.board.repository.BoardRepository;
 import com.james.api.common.component.Messenger;
-import com.james.api.common.component.PageRequestVo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
 
-    private static BoardRepository repository;
+    private final BoardRepository repository;
 
 
     @Override
@@ -37,8 +35,9 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public List<BoardDto> findAll() {
-        repository.findAll();
-        return new ArrayList<>();
+        return repository.findAll().stream()
+                .map(i->entityToDto(i))
+                .toList();
     }
 
     @Override

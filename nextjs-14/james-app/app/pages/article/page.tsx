@@ -2,11 +2,11 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from 'react-redux';
 import { NextPage } from "next";
-import { fetchAllArticles } from "@/app/components/article/service/article-service";
+import { findAllArticles } from "@/app/components/article/service/article-service";
 import { getAllArticles } from "@/app/components/article/service/article-slice";
-import Columns from "@/app/components/article/module/article-columns";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import ArticleColumns from "@/app/components/article/module/article-columns";
 
 interface IArticle {
     id: number,
@@ -34,23 +34,23 @@ const ArticlesPage: NextPage = ({data}:any) => {
 
 
     useEffect(() => {   // 레퍼런스 없음 = 의존관계 아님, 
-        dispatch(fetchAllArticles(1))    // 실행 순서: useEffect -> dispatch -> fetchAllArticles
+        dispatch(findAllArticles(1))    // 실행 순서: useEffect -> dispatch -> fetchAllArticles
     }, [])  // [dispatch]의 상태가 바뀌면 useEffect를 다시 실행한다 (나중에 다시 설명)
     
     return (<>
     <h2>게시글 목록</h2>
         <Box sx={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={data}
-        columns={Columns()}
+        rows={allArticles}
+        columns={ArticleColumns()}
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: 10,
             },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[10]}
         checkboxSelection
         disableRowSelectionOnClick
       />

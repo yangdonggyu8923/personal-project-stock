@@ -27,23 +27,23 @@ public class ArticleController {
 
     @PostMapping("/save")
     public ResponseEntity<Messenger> save(@RequestBody ArticleDto param){
-        log.info("입력받은 정보 : { }", param );
+        log.info("입력받은 정보 : {}", param );
         return ResponseEntity.ok(service.save(param));
     }
     @GetMapping("/list")
     public ResponseEntity<List<ArticleDto>> findAll(){
-        log.info("입력받은 정보 : { }" );
+        log.info(service.findAll().toString());
         return ResponseEntity.ok(service.findAll());
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<Messenger> deleteById(@RequestParam Long id){
-        log.info("입력받은 정보 : { }", id );
+        log.info("입력받은 정보 : {}", id );
         return ResponseEntity.ok(service.deleteById(id));
     }
     @GetMapping("/detail")
     public ResponseEntity<Optional<ArticleDto>> findById(@RequestBody Long id){
-        log.info("입력받은 정보 : { }", id );
+        log.info("입력받은 정보 : {}", id );
         return ResponseEntity.ok(service.findById(id));
     }
     @GetMapping("/count")

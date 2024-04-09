@@ -1,4 +1,4 @@
-import { IArticles } from "@/app/components/article/model/articles";
+import { IArticles } from "@/app/components/article/model/articles-model";
 import { GridColDef } from "@mui/x-data-grid";
 
 export default function ArticlesColumns(props: IArticles) : GridColDef[] {

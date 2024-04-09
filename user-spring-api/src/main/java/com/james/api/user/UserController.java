@@ -43,10 +43,9 @@ public class UserController {
 
 
     @GetMapping("/list")
-    public ResponseEntity<List<UserDto>> findAll(Pageable pageable) {
-        List<UserDto> ls = new ArrayList<>();
-        service.findAll();
-        return ResponseEntity.ok(new ArrayList<UserDto>());
+    public ResponseEntity<List<UserDto>> findAll() {
+        log.info(service.findAll().toString());
+        return ResponseEntity.ok(service.findAll());
     }
     @GetMapping("/detail")
     public ResponseEntity<Optional<UserDto>> findById(@RequestParam Long id) {

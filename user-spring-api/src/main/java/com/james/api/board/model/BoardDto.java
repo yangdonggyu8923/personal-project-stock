@@ -1,6 +1,7 @@
 package com.james.api.board.model;
 
 import com.james.api.article.model.Article;
+import com.james.api.common.model.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,5 +24,6 @@ public class BoardDto {
 
 //    @Builder.Default    // = List를 디폴트 타입으로 준다.
     private List<Article> article; // = new ArrayList<>()
-
+    private String regDate;
+    private String modDate;
 }

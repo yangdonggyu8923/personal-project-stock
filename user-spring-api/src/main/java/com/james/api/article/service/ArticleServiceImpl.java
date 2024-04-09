@@ -13,7 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService{
 
-    private static ArticleRepository repository;
+    private final ArticleRepository repository;
 
     @Override
     public Messenger save(ArticleDto t) {
@@ -35,8 +35,7 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public List<ArticleDto> findAll() {
-        repository.findAll();
-        return new ArrayList<>();
+        return repository.findAll().stream().map(i->entityToDto(i)).toList();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.james.api.user.model;
 
 import com.james.api.article.model.Article;
+import com.james.api.common.model.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,5 +25,7 @@ public class UserDto {
     private String phone;
     private String job;
     private List<Article> articles;
+    private String regDate;
+    private String modDate;
 
 }

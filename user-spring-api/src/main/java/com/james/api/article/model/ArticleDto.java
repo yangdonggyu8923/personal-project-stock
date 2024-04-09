@@ -1,5 +1,6 @@
 package com.james.api.article.model;
 
+import com.james.api.common.model.BaseEntity;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,9 +15,11 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 @Log4j2
-public class ArticleDto {
+public class ArticleDto  {
     private Long id;
     private String title;
     private String content;
     private Long writerId;
+    private String regDate;
+    private String modDate;
 }

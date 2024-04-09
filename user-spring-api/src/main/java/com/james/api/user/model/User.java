@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @AllArgsConstructor
-@ToString
+@ToString(exclude = {"id"})
 public class User extends BaseEntity {
 
     @Id

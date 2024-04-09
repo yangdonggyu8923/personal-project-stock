@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @ToString(exclude = {"id"})
 @Entity(name="boards")
-
 public class Board extends BaseEntity {
     @Id
     @Column(name = "board_id", nullable = false)
