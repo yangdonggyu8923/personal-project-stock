@@ -24,7 +24,7 @@ export const userSlice = createSlice({
     name: "users",
     initialState, // name, initialState = 속성
     reducers: {},
-    extraReducers:builder =>{ // reducers, extraReduvers = 기능
+    extraReducers:builder =>{ // reducers, extraReducers = 기능
         const {pending, rejected} = status;
 
         builder.addCase(findAllUsers.fulfilled, handleFulfilled) 

@@ -15,7 +15,7 @@ export default function UserColumns(): GridColDef[] {
             sortable: false,
             field: 'id',
             headerName: 'No.',
-            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.id}</Typography>
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{row.id}</Typography>
             }
         ,
         {
@@ -24,7 +24,7 @@ export default function UserColumns(): GridColDef[] {
             sortable: false,
             field: 'username',
             headerName: '아이디',
-            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>
                 <Link href={`${PG.USER}/detail/${row.id}`} className="underline">{row.username}</Link>
             </Typography>
         },
@@ -42,7 +42,7 @@ export default function UserColumns(): GridColDef[] {
             sortable: false,
             field: 'name',
             headerName: '이름',
-            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.name}</Typography>
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{row.name}</Typography>
         },
         {
             flex: 0.04,
@@ -50,7 +50,7 @@ export default function UserColumns(): GridColDef[] {
             sortable: false,
             field: 'phone',
             headerName: '전화번호',
-            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.phone}</Typography>
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{row.phone}</Typography>
         },
         {
             flex: 0.04,
@@ -58,7 +58,7 @@ export default function UserColumns(): GridColDef[] {
             sortable: false,
             field: 'job',
             headerName: '직업',
-            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.job}</Typography>
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{row.job}</Typography>
         },
         {
             flex: 0.04,
@@ -66,7 +66,7 @@ export default function UserColumns(): GridColDef[] {
             sortable: false,
             field: 'regrDate',
             headerName: '작성일자',
-            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.regDate}</Typography>
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{row.regDate}</Typography>
         },
         {
             flex: 0.04,
@@ -74,7 +74,7 @@ export default function UserColumns(): GridColDef[] {
             sortable: false,
             field: 'modDate',
             headerName: '수정일자',
-            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.modDate}</Typography>
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{row.modDate}</Typography>
         }
     ]
 }

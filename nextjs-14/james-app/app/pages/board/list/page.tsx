@@ -32,7 +32,7 @@ const BoardsPage: NextPage = () => {
 
     return (<>
     
-        <Box sx={{ height: 400, width: '100%' }}>
+        <Box sx={{ height: '100%', width: '100%' }}>
      {allBoards && <DataGrid
         rows={allBoards}
         columns={BoardColumns()}

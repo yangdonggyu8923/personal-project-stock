@@ -8,5 +8,5 @@ export const initialState: IArticles = {
     boardId: 0,
     regDate: "",
     modDate: "",
-    array: []
+    array: [],
 }

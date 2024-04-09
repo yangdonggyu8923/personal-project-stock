@@ -3,6 +3,7 @@ import { Typography } from "@mui/material";
 import { BoardColumn } from "../model/boards-column";
 import Link from "next/link";
 import { PG } from "../../common/enums/PG";
+import { MyTypography } from "../../common/style/cell";
 
 interface CellType{
     row : BoardColumn
@@ -16,7 +17,7 @@ export default function BoardColumns(): GridColDef[] {
             sortable: false,
             field: 'id',
             headerName: 'No.',
-            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>{row.id}</Typography>
+            renderCell: ({row}:CellType) => MyTypography(row.id, "1.2rem")
             }
         ,
         {

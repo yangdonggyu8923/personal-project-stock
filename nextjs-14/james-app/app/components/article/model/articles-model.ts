@@ -6,5 +6,5 @@ export interface IArticles {
     boardId?: number,
     regDate?: string,
     modDate?: string,
-    array?: []
+    array?: [],
 }
