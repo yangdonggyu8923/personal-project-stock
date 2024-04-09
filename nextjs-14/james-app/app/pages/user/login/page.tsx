@@ -44,12 +44,11 @@ const LoginPage = () => {
 
 
   return (<>
-    <h1>로그인</h1>
     <h3>ID</h3>
     <input type="text" onChange={handleUsername} />
     <h3>Password</h3>
     <input type="text" onChange={handlePassword} /> <br /> <br />
-    <button onClick={handleSubmit}>전송</button>
+    <button onClick={handleSubmit}>로그인</button>
   </>);
 }
 export default LoginPage;

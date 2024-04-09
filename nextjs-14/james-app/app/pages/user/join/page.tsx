@@ -45,8 +45,6 @@ const JoinPage: NextPage = () =>  {
 
   return (<>
     <div className="container">
-      <h1>Sign Up</h1>
-      <p>Please fill in this form to create an account.</p>
       <hr />
       <label htmlFor="username"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="username" onChange={handleChange} value={username} required /><br />
@@ -63,13 +61,13 @@ const JoinPage: NextPage = () =>  {
       <label htmlFor="job"><b>Job</b></label>
       <input type="text" placeholder="Enter Job" name="job" onChange={handleChange} value={job} required /><br />
 
-      <label>
+      {/* <label>
         <input type="checkbox" defaultChecked={true} name="remember" style={{ marginBottom: "15px" }} /> Remember me
-      </label>
-      <p>By creating an account you agree to our <a href="#" style={{ color: "dodgerblue" }}>Terms & Privacy</a>.</p>
+      </label> */}
+      
       <div className="clearfix">
-        <button type="button" className="cancelbtn" >Cancel</button>
-        <button type="submit" className="signupbtn" onClick={handleSubmit}>Sign Up</button>
+        {/* <button type="button" className="cancelbtn" >Cancel</button><br /> */}
+        <button type="submit" className="signupbtn" onClick={handleSubmit}>회원가입</button>
       </div>
     </div>
   </>);
