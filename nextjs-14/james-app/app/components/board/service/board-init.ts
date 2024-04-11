@@ -6,5 +6,6 @@ export const initialState: IBoards = {
     boardType: "",
     regDate: "",
     modDate: "",
+    json: {},
     array: []
 }

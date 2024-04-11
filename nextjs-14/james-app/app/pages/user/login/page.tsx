@@ -26,7 +26,7 @@ const LoginPage = () => {
         const message = res.data.message   // JSON.stringify = toString() , res.data = responsebody
         alert((message))
         if (message === 'SUCCESS') {
-          router.push(`${PG.ARTICLE}`)
+          router.push(`${PG.ARTICLE}/list`)
         }
         else if (message === 'FAIL') {
           alert('FAIL');
@@ -36,7 +36,7 @@ const LoginPage = () => {
         }
         else {
           alert('지정한 값 없음');
-          router.push(`${PG.ARTICLE}`)
+          router.push(`${PG.ARTICLE}/list`)
         }
       })
   }

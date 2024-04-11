@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./user-init";
-import { findAllUsers } from "./user-service";
+import { findAllUsers, findUserById, modifyUser } from "./user-service";
 
 const userThunks = [findAllUsers]
 
@@ -14,8 +14,8 @@ const handlePending = (state:any) => {}
 
 const handleFulfilled = (state:any, {payload}:any) => {
     console.log('--conclusion--')
-    state.array = payload
-    console.log(state.array)
+    state.json = payload
+    console.log(state.json)
 }
 
 const handleRejected = (state:any) => {}
@@ -23,11 +23,16 @@ const handleRejected = (state:any) => {}
 export const userSlice = createSlice({
     name: "users",
     initialState, // name, initialState = 속성
-    reducers: {},
+    reducers: {
+        handleChangePassword: (state:any, {payload}) => {state.json.password=payload}
+    },
     extraReducers:builder =>{ // reducers, extraReducers = 기능
         const {pending, rejected} = status;
 
-        builder.addCase(findAllUsers.fulfilled, handleFulfilled) 
+        builder
+        .addCase(findAllUsers.fulfilled,(state:any, {payload}:any)=>{state.array=payload}) 
+        .addCase(findUserById.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
+        .addCase(modifyUser.fulfilled, (state:any, {payload}:any)=>{state.array=payload})
     }
 })
 
@@ -37,6 +42,9 @@ export const getAllUsers = (state:any) => {
     return state.user.array;
 }
 
-export const { } = userSlice.actions
+export const getOneUser = (state:any) => (state.user.json)
+export const getModifyUser = (state:any) => (state.user.array)
+
+export const { handleChangePassword } = userSlice.actions
 
 export default userSlice.reducer; // 위는 각각의 reducers 여기선 다 합쳐져서 s가 사라진다.

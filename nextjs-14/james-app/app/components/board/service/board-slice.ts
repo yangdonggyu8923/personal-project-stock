@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { findAllBoards } from "./board-service";
+import { findAllBoards, findBoardById } from "./board-service";
 import { initialState } from "./board-init";
 
 
@@ -32,7 +32,8 @@ export const boardSlice = createSlice({
         const {pending, rejected} = status;
 
         builder                                                 
-        .addCase(findAllBoards.fulfilled, handleFulfilled)   
+        .addCase(findAllBoards.fulfilled, (state:any, {payload}:any)=>{state.array=payload})
+        .addCase(findBoardById.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
     }                                                        
 })
 
@@ -41,6 +42,8 @@ export const getAllBoards = (state: any) => {
     console.log(JSON.stringify(state.board.array))
     return state.board.array;  
 }
+export const getOneBoard = (state: any) => (state.board.json)
+
 
 export const {} = boardSlice.actions
 

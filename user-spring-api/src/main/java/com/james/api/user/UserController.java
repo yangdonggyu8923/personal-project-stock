@@ -1,5 +1,6 @@
 package com.james.api.user;
 
+import com.james.api.article.model.ArticleDto;
 import com.james.api.common.component.Messenger;
 import com.james.api.common.component.PageRequestVo;
 import com.james.api.user.model.UserDto;
@@ -48,9 +49,9 @@ public class UserController {
         return ResponseEntity.ok(service.findAll());
     }
     @GetMapping("/detail")
-    public ResponseEntity<Optional<UserDto>> findById(@RequestParam Long id) {
+    public ResponseEntity<UserDto> findById(@RequestParam Long id) {
         log.info("입력받은 User 정보 : { }" + id);
-        return ResponseEntity.ok(service.findById(id));
+        return ResponseEntity.ok(service.findById(id).orElseGet(UserDto::new));
     }
     @DeleteMapping("/delete")
     public ResponseEntity<Messenger> deleteById(@RequestParam Long id){

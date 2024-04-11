@@ -32,7 +32,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Messenger modify(UserDto user) {
-        return null;
+        repository.save(dtoToEntity(user));
+        return Messenger.builder()
+                .message("SUCCESS")
+                .build();
     }
 
     @Override
@@ -42,8 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDto> findById(Long id) {
-//        return entityToDto(repository.findById(id));
-        return null;
+        return repository.findById(id).stream().map(i->entityToDto(i)).findAny();
     }
 
     @Override
