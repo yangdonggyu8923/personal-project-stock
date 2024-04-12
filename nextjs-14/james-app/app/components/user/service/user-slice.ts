@@ -35,6 +35,7 @@ export const userSlice = createSlice({
         .addCase(findAllUsers.fulfilled,(state:any, {payload}:any)=>{state.array=payload}) 
         .addCase(findUserById.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
         .addCase(countUsers.fulfilled, (state:any, {payload}:any)=>{state.count=payload})
+        .addCase(modifyUser.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
     }
 })
 

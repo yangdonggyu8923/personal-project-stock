@@ -27,9 +27,7 @@ export const findUserByIdAPI = async (id: number) => {
 
 export const modifyUserAPI = async (user: IUsers) => {
     try{
-        const response = await instance.put('/users/modify',{
-            params: {user}
-        })
+        const response = (await instance.put('/users/modify', user))
         return response.data
     }catch(error){
         console.log(error)
