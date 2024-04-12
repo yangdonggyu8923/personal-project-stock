@@ -8,5 +8,6 @@ export interface IUsers {
     regDate?: string,
     modDate?: string,
     json?: {},
-    array?:[]
+    array?:[],
+    count?: number
 }

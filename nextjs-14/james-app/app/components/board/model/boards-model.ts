@@ -5,5 +5,6 @@ export interface IBoards {
     regDate?: string;
     modDate?: string;
     json?: {},
-    array?: []
+    array?: [],
+    count?: number
 }

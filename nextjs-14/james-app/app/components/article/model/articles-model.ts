@@ -8,4 +8,5 @@ export interface IArticles {
     modDate?: string,
     json?: {},
     array?: [],
+    count?: number
 }

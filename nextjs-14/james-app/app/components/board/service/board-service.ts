@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { findAllBoardsAPI, findBoardByIdAPI } from "./board-api";
+import { countBoardsAPI, findAllBoardsAPI, findBoardByIdAPI } from "./board-api";
 
 export const findAllBoards: any = createAsyncThunk( 
     'boards/findAllBoards',                        
@@ -14,6 +14,14 @@ export const findBoardById: any = createAsyncThunk(
     'boards/findBoardById',                       
     async (id: number) => {
         const data: any = await findBoardByIdAPI(id);
+        return data
+    }
+)
+
+export const countBoards: any = createAsyncThunk( 
+    'boards/countBoards',                       
+    async () => {
+        const data: any = await countBoardsAPI();
         return data
     }
 )

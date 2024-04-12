@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./user-init";
-import { findAllUsers, findUserById, modifyUser } from "./user-service";
+import { countUsers, findAllUsers, findUserById, modifyUser } from "./user-service";
 
 const userThunks = [findAllUsers]
 
@@ -10,21 +10,23 @@ const status = {
     rejected: 'rejected' 
 }
 
-const handlePending = (state:any) => {}
+// const handlePending = (state:any) => {}
 
-const handleFulfilled = (state:any, {payload}:any) => {
-    console.log('--conclusion--')
-    state.json = payload
-    console.log(state.json)
-}
+// const handleFulfilled = (state:any, {payload}:any) => {
+//     console.log('--conclusion--')
+//     state.json = payload
+//     console.log(state.json)
+// }
 
-const handleRejected = (state:any) => {}
+// const handleRejected = (state:any) => {}
 
 export const userSlice = createSlice({
     name: "users",
     initialState, // name, initialState = 속성
     reducers: {
-        handleChangePassword: (state:any, {payload}) => {state.json.password=payload}
+        handlePassword: (state:any, {payload}) => {state.json.password=payload},
+        handlePhone: (state:any, {payload}) => {state.json.phone=payload},
+        handleJob: (state:any, {payload}) => {state.json.job=payload}
     },
     extraReducers:builder =>{ // reducers, extraReducers = 기능
         const {pending, rejected} = status;
@@ -32,7 +34,7 @@ export const userSlice = createSlice({
         builder
         .addCase(findAllUsers.fulfilled,(state:any, {payload}:any)=>{state.array=payload}) 
         .addCase(findUserById.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
-        .addCase(modifyUser.fulfilled, (state:any, {payload}:any)=>{state.array=payload})
+        .addCase(countUsers.fulfilled, (state:any, {payload}:any)=>{state.count=payload})
     }
 })
 
@@ -43,8 +45,8 @@ export const getAllUsers = (state:any) => {
 }
 
 export const getOneUser = (state:any) => (state.user.json)
-export const getModifyUser = (state:any) => (state.user.array)
+export const getCountUsers = (state:any) => (state.user.count)
 
-export const { handleChangePassword } = userSlice.actions
+export const { handlePassword, handleJob, handlePhone} = userSlice.actions
 
 export default userSlice.reducer; // 위는 각각의 reducers 여기선 다 합쳐져서 s가 사라진다.

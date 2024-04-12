@@ -36,3 +36,15 @@ export const modifyUserAPI = async (user: IUsers) => {
         return error
     }
 }
+
+export const countUserAPI = async () => {
+    try{
+        const response = await instance.get('/users/count',{
+            params: {}
+        })
+        return response.data
+    }catch(error){
+        console.log(error)
+        return error
+    }
+}

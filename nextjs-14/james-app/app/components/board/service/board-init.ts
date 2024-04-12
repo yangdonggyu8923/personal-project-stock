@@ -7,5 +7,6 @@ export const initialState: IBoards = {
     regDate: "",
     modDate: "",
     json: {},
-    array: []
+    array: [],
+    count: 0
 }

@@ -25,3 +25,29 @@ export const findArticleByIdAPI = async (id: number) =>{
     }
     
 }
+
+export const deleteArticleByIdAPI = async (id: number) =>{
+    try{  
+        const response = await instance.delete('/articles/delete',{
+            params: { id }
+        })
+        return response.data
+    }catch(error){
+        console.log(error)
+        return error
+    }
+    
+}
+
+export const countArticlesAPI = async () =>{
+    try{  
+        const response = await instance.get('/articles/count',{
+            params: {}
+        })
+        return response.data
+    }catch(error){
+        console.log(error)
+        return error
+    }
+    
+}

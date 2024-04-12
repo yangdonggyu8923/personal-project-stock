@@ -10,4 +10,5 @@ export const initialState: IArticles = {
     modDate: "",
     json: {},
     array: [],
+    count: 0
 }

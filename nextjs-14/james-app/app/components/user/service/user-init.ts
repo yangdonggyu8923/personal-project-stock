@@ -10,5 +10,6 @@ export const initialState: IUsers = {
     regDate: "",
     modDate: "",
     json: {},
-    array: []
+    array: [],
+    count: 0
 }

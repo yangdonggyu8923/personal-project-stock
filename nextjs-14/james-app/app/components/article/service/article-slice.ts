@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./article-init";
-import { findAllArticles, findArticleById } from "./article-service";
+import { countArticles, deleteArticleById, findAllArticles, findArticleById } from "./article-service";
 
 const articleThunks = [findAllArticles, findArticleById]
 
@@ -33,6 +33,8 @@ export const articleSlice = createSlice({   // 슬라이스의 이름 = articles
         builder                                                 
         .addCase(findAllArticles.fulfilled, (state:any, {payload}:any)=>{state.array=payload})
         .addCase(findArticleById.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
+        .addCase(deleteArticleById.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
+        .addCase(countArticles.fulfilled, (state:any, {payload}:any)=>{state.count=payload})
     }                                                           
         // handFulfilled = break;
         // switch case(findAllArticles.fulfilled);
@@ -47,6 +49,8 @@ export const getAllArticles = (state: any) => {
 export const getOneArticle = (state: any) => (state.article.json)   
     // 여기에서 state는 전체의 state -> 전역으로 보내야함. 
     // 보내기 전에 state를 슬라이스 해 놓았기때문에 article의 state임을 명시해줘야함
+
+export const getCountArticles = (state:any) => (state.article.count)
 
 export const {} = articleSlice.actions
 

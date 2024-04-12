@@ -7,6 +7,7 @@ import com.james.api.user.model.UserDto;
 import com.james.api.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +22,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public Messenger save(UserDto t) {
         entityToDto(repository.save(dtoToEntity(t)));
-        return new Messenger();
+        return Messenger.builder().message("SUCCESS").build();
     }
 
     @Override
     public Messenger deleteById(Long id) {
         repository.deleteById(id);
-        return new Messenger();
+        return Messenger.builder()
+                .message(repository.findById(id).isPresent() ? "SUCCESS" : "FAILURE")
+                .build();
     }
 
     @Override
@@ -49,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public long count() {
+    public Long count() {
         return repository.count();
     }
 
@@ -75,6 +78,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Messenger login(UserDto param) {
-        return new Messenger();
+        return Messenger.builder()
+                .message("SUCCESS").build();
     }
 }

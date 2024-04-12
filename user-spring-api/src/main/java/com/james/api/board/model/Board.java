@@ -3,6 +3,7 @@ import com.james.api.article.model.Article;
 import com.james.api.common.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.apache.logging.log4j.util.Lazy;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class Board extends BaseEntity {
     @Column(name = "board_type")
     private String boardType;
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Article> article;
 
     @Builder(builderMethodName = "builder")

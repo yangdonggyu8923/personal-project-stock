@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from 'react-redux';
 import { NextPage } from "next";
-import { findAllArticles } from "@/app/components/article/service/article-service";
-import { getAllArticles } from "@/app/components/article/service/article-slice";
+import { countArticles, findAllArticles } from "@/app/components/article/service/article-service";
+import { getAllArticles, getCountArticles } from "@/app/components/article/service/article-slice";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import ArticleColumns from "@/app/components/article/module/article-columns";
@@ -20,7 +20,8 @@ const ArticlesPage: NextPage = () => {
     const dispatch = useDispatch()  // 레퍼런스 있음 = 의존관계
     // const [articles, setArticles] = useState([]) -> 상태가 리액트에 없고 리덕스에 있다 = 무상태 프로그래밍
     const allArticles: [] = useSelector(getAllArticles)  // 레퍼런스 있음 = 의존관계
-
+    const cntArticles = useSelector(getCountArticles)
+    
     // if(allArticles !== undefined){  // -> fulfilled의 switch case
     //     console.log('allArticles is not undefined')
 
@@ -34,8 +35,9 @@ const ArticlesPage: NextPage = () => {
 
 
     useEffect(() => {   // 레퍼런스 없음 = 의존관계 아님, 
-        dispatch(findAllArticles(1))    // 실행 순서: useEffect -> dispatch -> fetchAllArticles(Chunk. 비동기)
-    }, [])
+        dispatch(findAllArticles(1)),    // 실행 순서: useEffect -> dispatch -> fetchAllArticles(Chunk. 비동기)
+        dispatch(countArticles())
+      }, [])
     
     return (<>
     <Box sx={{ height: '100%', width: '100%' }}>
@@ -54,6 +56,7 @@ const ArticlesPage: NextPage = () => {
         disableRowSelectionOnClick
       />}
     </Box>
+    <div>게시글 수 : {cntArticles}</div>
     </>)
 }
 
