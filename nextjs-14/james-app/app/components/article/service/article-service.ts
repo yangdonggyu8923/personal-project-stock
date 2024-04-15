@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { countArticlesAPI, deleteArticleByIdAPI, findAllArticlesAPI, findArticleByIdAPI } from "./article-api";
+import { countArticlesAPI, deleteArticleByIdAPI, findAllArticlesAPI, findArticleByIdAPI, modifyArticleAPI } from "./article-api";
+import { IArticles } from "../model/articles-model";
 
 export const findAllArticles: any = createAsyncThunk( // 데이터를 비동기로 만들어 자바와 주고 받으려고,
     'articles/findAllArticles',                        // createAsyncThunk가 없으면 동기로 보내는 것
@@ -35,4 +36,12 @@ export const deleteArticleById: any = createAsyncThunk(
 export const countArticles: any = createAsyncThunk(
     'articles/countArticles',
     async () => (await countArticlesAPI())
+)
+
+export const modifyArticle: any = createAsyncThunk(
+    'articles/modifyArticle',
+    async (article: IArticles) => {
+        const data :any = await modifyArticleAPI(article)
+        return data
+    }
 )

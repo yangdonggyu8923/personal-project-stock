@@ -73,12 +73,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> findUserByUsername(String username) {
-        return Optional.empty();
+        return repository.findByUsername(username);
     }
 
+
+    // SRP에 따라 아이디 존재여부를 프론트에서 먼저 판단하고 넘어옴 (시큐리티)
     @Override
     public Messenger login(UserDto param) {
         return Messenger.builder()
-                .message("SUCCESS").build();
+                .message(findUserByUsername(param.getUsername())
+                        .get() // 무조건 get이다 ( getOrElse = 없을수도있음 )
+                        .getPassword()
+                        .equals(param.getPassword()) ? "SUCCESS" : "FAILURE")
+                .build();
     }
 }

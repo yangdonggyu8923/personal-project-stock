@@ -9,5 +9,6 @@ export interface IUsers {
     modDate?: string,
     json?: {},
     array?:[],
-    count?: number
+    count?: number,
+    message?: string
 }

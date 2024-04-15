@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString(exclude = {"id"})
 @Entity(name="boards")
+@Builder
 public class Board extends BaseEntity {
     @Id
     @Column(name = "board_id", nullable = false)
@@ -25,10 +26,4 @@ public class Board extends BaseEntity {
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Article> article;
 
-    @Builder(builderMethodName = "builder")
-    public Board(Long id, String boardName, String boardType) {
-        this.id = id;
-        this.boardName = boardName;
-        this.boardType = boardType;
-    }
 }

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./article-init";
-import { countArticles, deleteArticleById, findAllArticles, findArticleById } from "./article-service";
+import { countArticles, deleteArticleById, findAllArticles, findArticleById, modifyArticle } from "./article-service";
 
 const articleThunks = [findAllArticles, findArticleById]
 
@@ -26,7 +26,10 @@ const handleRejected = (state:any) => {
 export const articleSlice = createSlice({   // 슬라이스의 이름 = articles, 슬라이스의 키  = article (리듀서에 있음)
     name: "articles",
     initialState,
-    reducers: {},
+    reducers: {
+        handleTitle: (state:any, {payload}) => {state.json.title=payload},
+        handleContent: (state:any, {payload}) => {state.json.content=payload},
+    },
     extraReducers:builder =>{
         const {pending, rejected} = status;
 
@@ -34,7 +37,9 @@ export const articleSlice = createSlice({   // 슬라이스의 이름 = articles
         .addCase(findAllArticles.fulfilled, (state:any, {payload}:any)=>{state.array=payload})
         .addCase(findArticleById.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
         .addCase(deleteArticleById.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
+        .addCase(modifyArticle.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
         .addCase(countArticles.fulfilled, (state:any, {payload}:any)=>{state.count=payload})
+        
     }                                                           
         // handFulfilled = break;
         // switch case(findAllArticles.fulfilled);
@@ -51,7 +56,9 @@ export const getOneArticle = (state: any) => (state.article.json)
     // 보내기 전에 state를 슬라이스 해 놓았기때문에 article의 state임을 명시해줘야함
 
 export const getCountArticles = (state:any) => (state.article.count)
+export const deleteOneArticle = (state:any) => (state.article.json)
 
-export const {} = articleSlice.actions
+
+export const { handleContent, handleTitle } = articleSlice.actions
 
 export default articleSlice.reducer;

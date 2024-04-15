@@ -17,7 +17,7 @@ import { PG } from '@/app/components/common/enums/PG';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-const pages = ['회원가입', '로그인', '카운터', '게시글 목록', '게시판 목록', '사용자 목록'];
+const pages = ['카운터', '게시글 목록', '게시판 목록', '사용자 목록'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -33,12 +33,6 @@ function ResponsiveAppBar() {
   const router = useRouter();
   const handleCloseNavMenu = (event: any) => {
      switch(event.target.innerText){
-      case '회원가입':
-        router.push(`${PG.USER}/join`) 
-        break;
-      case '로그인':
-        router.push(`${PG.USER}/login`)
-        break;
       case '카운터':
         router.push(`${PG.DEMO}/redux-counter`)
         break;

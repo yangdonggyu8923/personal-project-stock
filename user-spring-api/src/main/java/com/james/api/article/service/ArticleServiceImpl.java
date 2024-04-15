@@ -17,19 +17,24 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public Messenger save(ArticleDto t) {
-        entityToDto((repository.save(dtoToEntity(t))));
-        return new Messenger();
+        entityToDto(repository.save(dtoToEntity(t)));
+        return Messenger.builder().message("SUCCESS").build();
     }
 
     @Override
     public Messenger deleteById(Long id) {
         repository.deleteById(id);
-        return new Messenger();
+        return Messenger.builder()
+                .message(repository.findById(id).isPresent() ? "SUCCESS" : "FAILURE")
+                .build();
     }
 
     @Override
     public Messenger modify(ArticleDto articleDto) {
-        return null;
+        repository.save(dtoToEntity(articleDto));
+        return Messenger.builder()
+                .message("SUCCESS")
+                .build();
     }
 
 

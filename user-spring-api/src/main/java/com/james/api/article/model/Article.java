@@ -10,6 +10,7 @@ import lombok.*;
 @Getter
 @AllArgsConstructor
 @ToString(exclude = {"id"})
+@Builder
 @Entity(name = "articles")
 
 public class Article extends BaseEntity {
@@ -28,12 +29,10 @@ public class Article extends BaseEntity {
     @JoinColumn(name = "board_id")
     private Board board;
 
-
-    @Builder(builderMethodName = "builder")
-    public Article(Long id, String title, User writer, String content) {
-        this.id = id;
-        this.title = title;
-        this.writer = writer;
-        this.content = content;
-    }
+//    public static Article of(String title, String content){
+//        Article article = new Article();
+//        article.title = title;
+//        article.content = content;
+//        return article;
+//    }
 }

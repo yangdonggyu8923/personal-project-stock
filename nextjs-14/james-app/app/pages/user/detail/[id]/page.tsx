@@ -1,6 +1,7 @@
 'use client'
+import { PG } from "@/app/components/common/enums/PG"
 import { IUsers } from "@/app/components/user/model/users-model"
-import { findUserById, modifyUser } from "@/app/components/user/service/user-service"
+import { deleteUserById, findUserById, modifyUser } from "@/app/components/user/service/user-service"
 import { getOneUser, handleJob, handlePassword, handlePhone } from "@/app/components/user/service/user-slice"
 import { Button, Input, Typography } from "@mui/material"
 import { useRouter } from "next/navigation"
@@ -21,6 +22,11 @@ export default function UserDetailPage({params}:any){
         dispatch(modifyUser(oneUser))
         location.reload()
     }
+
+    const handleDeleteUser = () =>{
+        dispatch(deleteUserById(params.id))
+        router.push(`${PG.USER}/list`)
+    }
     
     useEffect(()=>{
         dispatch(findUserById(params.id))
@@ -36,5 +42,6 @@ export default function UserDetailPage({params}:any){
     <span>작성일자 : </span><Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{oneUser.regDate}</Typography>
     <span>수정일자 : </span><Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{oneUser.modDate}</Typography>
     <Button onClick={handleModifyUser}>수정</Button>
+    <Button onClick={handleDeleteUser}>삭제</Button>
     </>)
 }
