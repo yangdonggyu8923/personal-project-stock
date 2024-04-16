@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "./user-init";
 import { countUsers, deleteUserById, findAllUsers, findUserById, loginUser, modifyUser } from "./user-service";
+import { IUsers } from "../model/users-model";
 
 const userThunks = [findAllUsers]
 
@@ -8,6 +8,23 @@ const status = {
     pending: 'pending',
     fulfilled: 'fulfilled',
     rejected: 'rejected' 
+}
+
+interface IAuth {
+    message?: string,
+    token?: string
+}
+
+interface UserState  {
+    json?: IUsers,    
+    array?: Array<IUsers>, // = 자바의 ArrayList
+    auth?: IAuth
+}
+
+export const initialState: UserState = {
+    json: {} as IUsers,     // IUsers user = new IUsers, 
+    array : [],          // 자동으로 내부 속성값이 초기화된다 (init)
+    auth: {} as IAuth 
 }
 
 export const userSlice = createSlice({  // DB users테이블의 내부, 액시오스로 전달
@@ -27,23 +44,22 @@ export const userSlice = createSlice({  // DB users테이블의 내부, 액시�
         .addCase(countUsers.fulfilled, (state:any, {payload}:any)=>{state.count=payload})
         .addCase(modifyUser.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
         .addCase(deleteUserById.fulfilled, (state:any, {payload}:any)=>{state.json=payload})
-        .addCase(loginUser.fulfilled, (state:any, {payload}:any)=>{state.message=payload})
+        .addCase(loginUser.fulfilled, (state:any, {payload}:any)=>{state.auth=payload})
     }
 })
 
+// DB users 테이블의 바깥
 export const getAllUsers = (state:any) => {
     console.log('-- Before useSelector --')
     console.log(JSON.stringify(state.user.array))
     return state.user.array;
 }
-
 export const getOneUser = (state:any) => (state.user.json)
 export const getCountUsers = (state:any) => (state.user.count)
 export const deleteOneUser = (state:any) => (state.user.json)
-
-export const getLoginMessage = (state:any) => {    // DB users 테이블의 바깥
-    console.log(JSON.stringify(state.user.message))
-    return state.user.message
+export const getAuth = (state:any) => {    
+    console.log(JSON.stringify(state.user.auth))
+    return state.user.auth
 }
 
 export const { handlePassword, handleJob, handlePhone } = userSlice.actions

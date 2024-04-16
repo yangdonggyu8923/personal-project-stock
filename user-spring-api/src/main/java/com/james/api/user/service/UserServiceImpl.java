@@ -1,5 +1,6 @@
 package com.james.api.user.service;
 
+import com.james.api.common.component.JwtProvider;
 import com.james.api.common.component.Messenger;
 import com.james.api.common.component.PageRequestVo;
 import com.james.api.user.model.User;
@@ -17,6 +18,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository repository;
+
+    private final JwtProvider jwtProvider;
 
 
     @Override
@@ -80,11 +83,11 @@ public class UserServiceImpl implements UserService {
     // SRP에 따라 아이디 존재여부를 프론트에서 먼저 판단하고 넘어옴 (시큐리티)
     @Override
     public Messenger login(UserDto param) {
+        boolean flag = repository.findByUsername(param.getUsername()).get().getPassword().equals(param.getPassword());
+
         return Messenger.builder()
-                .message(findUserByUsername(param.getUsername())
-                        .get() // 무조건 get이다 ( getOrElse = 없을수도있음 )
-                        .getPassword()
-                        .equals(param.getPassword()) ? "SUCCESS" : "FAILURE")
+                .message(flag ? "SUCCESS" : "FAILURE")
+                .token(flag ? jwtProvider.createToken(param) : "NONE")
                 .build();
     }
 }

@@ -7,8 +7,5 @@ export interface IUsers {
     job?: string,
     regDate?: string,
     modDate?: string,
-    json?: {},
-    array?:[],
     count?: number,
-    message?: string
 }

@@ -64,7 +64,7 @@ export const loginUserAPI = async ({username, password}:any) => {
         const response = await instance.post('/users/login',{username, password}
         )
         // Java에서 Messenger.message에 값을 담음
-        return response.data.message
+        return response.data
     }catch(error){
         console.log(error)
         return error

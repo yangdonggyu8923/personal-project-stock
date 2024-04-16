@@ -1,10 +1,14 @@
 'use client';
+import { parseCookies } from "nookies";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
 import Header from "./components/common/module/header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAuth } from "./components/user/service/user-slice";
+import { useSelector } from "react-redux";
+import DashHeader from "./components/common/module/dash-header";
 
 const ReduxProvider = dynamic(() => import("@/redux/redux-provider"), {
   ssr: false
@@ -23,13 +27,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const [showHeader, setShowHeader] = useState<boolean>(false);
+  // const [showHeader, setShowHeader] = useState<boolean>(false);
+  // const auth = useSelector(getAuth)
+
+  // useEffect(()=>{
+  //   if(auth.token !== ''){
+  //     setShowHeader(true)
+  //   }else{
+  //     console.log('토큰에 값이 없는 상태')
+  //   }
+  // },[auth]) // [auth]가 바뀔때마다 실행
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        {showHeader && <Header/>}
+        {parseCookies().message === 'SUCCESS' && <Header/>}
+        {parseCookies().message === 'ADMIN' && <DashHeader/>}
+        <div className="mt-100">
         <ReduxProvider> {children}</ReduxProvider>
+        </div>
       </body>
     </html>
   );

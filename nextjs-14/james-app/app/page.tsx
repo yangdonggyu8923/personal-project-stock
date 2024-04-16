@@ -9,12 +9,13 @@ import { instance } from "@/app/components/common/configs/axios-config"
 import { useDispatch, useSelector } from "react-redux";
 import { IUsers } from "./components/user/model/users-model";
 import { loginUser } from "./components/user/service/user-service";
-import { getLoginMessage } from "./components/user/service/user-slice";
+import { getAuth } from "./components/user/service/user-slice";
+import { parseCookies, destroyCookie, setCookie } from "nookies"
 
 
 const LoginPage = () => {
   const dispatch = useDispatch()
-  const message:string = useSelector(getLoginMessage)
+  const auth = useSelector(getAuth)
 
   const [user, setUser] = useState({} as IUsers)
 
@@ -37,14 +38,18 @@ const LoginPage = () => {
   }
 
   useEffect(()=>{
-    if(message==='SUCCESS'){
+    if(auth.message==='SUCCESS'){
+      setCookie({},'message',auth.message,{ httpOnly: false, path: '/' })
+      setCookie({},'token',auth.token,{ httpOnly: false, path: '/' })
+      console.log('서버에서 넘어온 메시지 : ' + parseCookies().message)
+      console.log('서버에서 넘어온 토큰 : ' + parseCookies().token)
       router.push(`${PG.USER}/list`)
     }
     else{
       console.log('FAILURE')
       router.replace
     }
-  },[message])
+  },[auth])
   
   
   return(<div className="h-[70vh] flex items-center justify-center">
