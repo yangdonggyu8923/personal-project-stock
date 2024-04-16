@@ -1,13 +1,9 @@
 'use client';
 import { parseCookies } from "nookies";
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
 import Header from "./components/common/module/header";
-import { useEffect, useState } from "react";
-import { getAuth } from "./components/user/service/user-slice";
-import { useSelector } from "react-redux";
 import DashHeader from "./components/common/module/dash-header";
 
 const ReduxProvider = dynamic(() => import("@/redux/redux-provider"), {
@@ -26,17 +22,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  // const [showHeader, setShowHeader] = useState<boolean>(false);
-  // const auth = useSelector(getAuth)
-
-  // useEffect(()=>{
-  //   if(auth.token !== ''){
-  //     setShowHeader(true)
-  //   }else{
-  //     console.log('토큰에 값이 없는 상태')
-  //   }
-  // },[auth]) // [auth]가 바뀔때마다 실행
 
   return (
     <html lang="en">

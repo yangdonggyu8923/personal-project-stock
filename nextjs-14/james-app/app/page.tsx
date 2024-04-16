@@ -39,17 +39,16 @@ const LoginPage = () => {
 
   useEffect(()=>{
     if(auth.message==='SUCCESS'){
+      router.push(`${PG.USER}/list`)
       setCookie({},'message',auth.message,{ httpOnly: false, path: '/' })
       setCookie({},'token',auth.token,{ httpOnly: false, path: '/' })
       console.log('서버에서 넘어온 메시지 : ' + parseCookies().message)
       console.log('서버에서 넘어온 토큰 : ' + parseCookies().token)
-      router.push(`${PG.USER}/list`)
     }
     else{
       console.log('FAILURE')
-      router.replace
     }
-  },[auth])
+  },[auth.message])
   
   
   return(<div className="h-[70vh] flex items-center justify-center">
@@ -132,7 +131,7 @@ const LoginPage = () => {
       </a>
       <div className="mt-4 flex items-center w-full text-center">
         <Link
-          href="http://localhost:3000/pages/user/register"
+          href="/pages/user/register"
           className="text-xs text-gray-500 capitalize text-center w-full"
         >
           Don&apos;t have any account yet?
